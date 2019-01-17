@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from ipl_data.models import Matches, Deliveries
-# import mysql.connector
+import os
+import sys
 import csv
 
 
@@ -10,8 +11,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         print(kwargs)
-        matches_reader = csv.DictReader(open('/home/nike/MountBlue/projects/10_nilkhil_django-ipl/static/matches.csv'))
-        deliveries_reader = csv.DictReader(open('/home/nike/MountBlue/projects/10_nilkhil_django-ipl/static/deliveries.csv'))
+        matches_reader = csv.DictReader(open(os.path.join(os.getcwd(), 'matches.csv))
+        deliveries_reader = csv.DictReader(open(os.path.join(os.getcwd(), 'deliveries.csv))
 
         with transaction.atomic():
             for match in matches_reader:
