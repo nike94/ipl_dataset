@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Django Highcharts Example</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Matches Played'
+        },
+        xAxis: {
+            title: {
+            text: 'Seasons'
+        },
+            categories: [
+                {% for match in matches_played %}'{{ match.season }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+            ]
+        },
+        yAxis: {
+            title: {
+            text: 'Matches Won'
+        }
+        },
+        series: [{
+          name: 'Matches played',
+          data: [
+            {% for match in matches_played %}{{ match.count }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'green'
+      }]
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Django Highcharts Example</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Matches Played'
+        },
+        xAxis: {
+            title: {
+            text: 'Teams'
+        },
+            categories: [
+                {% for extra_run in extra_runs %}'{{ extra_run.bowling_team }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+            ]
+        },
+        yAxis: {
+            title: {
+            text: 'Extra Runs'
+        }
+        },
+        series: [{
+          name: 'Extra Runs Given',
+          data: [
+            {% for extra_run in extra_runs %}{{ extra_run.extra_runs__sum }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          ],
+          color: 'green'
+      }]
+    });
+  </script>
+</body>
+</html>

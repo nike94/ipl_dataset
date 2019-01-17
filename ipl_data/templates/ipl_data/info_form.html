@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>INFO</title>
+    </head>
+    <body>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <div>
+                <h3>Select the type of records</h3>
+                <input type="radio" name="performer" value="batsman"> Batsman<br>
+                <input type="radio" name="performer" value="bowler"> Bowler<br>
+            </div>
+
+            <div>
+            <h3>Select Year</h3>
+            <select name="year">
+                <option>--year--</option>
+                 <option>2008</option>
+                 <option>2009</option>
+                 <option>2010</option>
+                 <option>2011</option>
+                 <option>2012</option>
+                 <option>2013</option>
+                 <option>2014</option>
+                 <option>2015</option>
+                 <option>2016</option>
+                 <option>2017</option>
+             </select>
+         </div><br>
+         <div>
+            <button type="submit">Get Info</button>
+        </div>
+        </form>
+    </body>
+</html>
